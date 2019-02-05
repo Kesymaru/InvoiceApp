@@ -1,5 +1,4 @@
 (function(){
-    
     const inputSave = document.querySelector('.save');
     const reset = document.querySelector('.reset');
     // inputs
@@ -11,7 +10,7 @@
     //
     function PrintElement(){
         const opction = inputType.options[inputType.selectedIndex];
-        let object = new CreateItens  ( inputName.value  , opction.value  ,  inputdate.value  ,  inputAmoutn.value );
+        let object = new CreateItens ( inputName.value  , opction.value  ,  inputdate.value  ,  inputAmoutn.value );
         data.push(object);
         //
         const table = document.querySelector('.tablet');
@@ -24,6 +23,7 @@
             tr.append(td);
             table.appendChild(tr)
         }
+        Sumary()
     }
     //
     function CreateItens (name , type , date , amont ){
@@ -31,6 +31,15 @@
         this.title = type;
         this.date = date;
         this.amont = amont;
+    }
+    function Sumary(){
+        data.forEach(element => {
+            const contentSumary = document.querySelector('.count');
+            if(element.type = 'A'){
+                alert()
+            }
+            console.log(element.amont);
+        });
     }
 
     inputSave.addEventListener('click' , PrintElement )
