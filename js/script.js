@@ -8,40 +8,53 @@
     const inputType = document.querySelector('#input_type');
     const data = [];
     //
+    function set(){
+        inputName.value ='';
+        inputAmoutn.value='';
+        inputdate.value='';
+    }
+    //
+    let object ;
     function PrintElement(){
         const opction = inputType.options[inputType.selectedIndex];
-        let object = new CreateItens ( inputName.value  , opction.value  ,  inputdate.value  ,  inputAmoutn.value );
+        object = new CreateItens ( inputName.value  , opction.value  ,  inputdate.value  ,  inputAmoutn.value );
         data.push(object);
         //
         const table = document.querySelector('.tablet');
         const tr = document.createElement('tr');
         //
         for( const item in object){
-            console.log(object[item])
             const td = document.createElement('td');
             td.innerText = object[item];
             tr.append(td);
             table.appendChild(tr)
         }
-        Sumary()
+        Sumary();
     }
     //
     function CreateItens (name , type , date , amont ){
         this.name = name;
-        this.title = type;
+        this.type = type;
         this.date = date;
         this.amont = amont;
     }
+    //
+
+    const contentSumary = document.querySelector('.typeA');
+    const sumaryTypeA = document.createElement('input');
+    sumaryTypeA.type = 'text';
+
+    let numero ;
     function Sumary(){
-        data.forEach(element => {
-            const contentSumary = document.querySelector('.count');
-            if(element.type = 'A'){
-                alert()
-            }
-            console.log(element.amont);
-        });
+        if(object.type == 'A')
+        console.log(object.amont)
+        numero =  parseInt(object.amont) ;
+        j()
     }
 
+    function j(){
+        console.log(numero)
+    }
     inputSave.addEventListener('click' , PrintElement )
-    //reset.addEventListener()
+    reset.addEventListener( 'click', set)
 }());
