@@ -27,7 +27,7 @@
             table.appendChild(tr)
         }
         set()
-        Sumary();
+        summation();
     }
 
     //
@@ -38,41 +38,70 @@
         this.amont = amont;
     }
     //
-    function elementsType(a,b,c){
-        this.a =a;
-        this.b = b;
-        this.c
-    }
-
-    const contentSumaryA = document.querySelector('.typeA');
-    const sumaryTypeA = document.createElement('p');
-    const contentSumaryB = document.querySelector('.typeB');
-    const sumaryTypeB = document.createElement('p');
-    const contentSumaryC = document.querySelector('.typeC');
-    const sumaryTypeC = document.createElement('p');
-    let num = parseInt(sumaryTypeA.innerHTML = 0);
-    let numB = parseInt(sumaryTypeB.innerHTML = 0);
-    let numC = parseInt(sumaryTypeC.innerHTML = 0);
+    const contentSumarA = document.querySelector('.typeA');
+    const sumarTypeA = document.createElement('p');
+    const contentSumarB = document.querySelector('.typeB');
+    const sumarTypeB = document.createElement('p');
+    const contentSumarC = document.querySelector('.typeC');
+    const sumarTypeC = document.createElement('p');
+    let num = parseInt(sumarTypeA.innerHTML = 0);
+    let numB = parseInt(sumarTypeB.innerHTML = 0);
+    let numC = parseInt(sumarTypeC.innerHTML = 0);
     //
-    function Sumary(){
+    function summation(){
         if(object.type == 'A'){
             num += parseInt(object.amont);
             console.log(num)
-            sumaryTypeA.innerHTML = num
+            sumarTypeA.innerHTML = num
         }else if(object.type == 'B'){
             numB += parseInt(object.amont);
             console.log(numB)
-            sumaryTypeB.innerHTML = numB
+            sumarTypeB.innerHTML = numB
         }else if(object.type == 'C'){
             numC += parseInt(object.amont);
             console.log(numC)
-            sumaryTypeC.innerHTML = numC
+            sumarTypeC.innerHTML = numC
         }
     }
-
-    contentSumaryA.appendChild(sumaryTypeA);
-    contentSumaryB.appendChild(sumaryTypeB)
-    contentSumaryC.appendChild(sumaryTypeC)
-    inputSave.addEventListener('click' , PrintElement )
+    //
+    contentSumarA.appendChild(sumarTypeA);
+    contentSumarB.appendChild(sumarTypeB);
+    contentSumarC.appendChild(sumarTypeC);
+    let thName = document.querySelector('.th_name');
+    let thType = document.querySelector('.th_type');
+    let thAmount = document.querySelector('.th_amount');
+    //
+    function SortName (){
+        alert('hola');
+        const sortName = data.sort( (a,b) =>{
+            a = a.name.toLowerCase();
+            b = b.name.toLowerCase();
+            if (a > b) {return 1;} 
+            else if (a < b) {return -1;}
+            else if (a === b) { return 0;}
+        });
+        return sortName;
+    }
+    function SortType (){
+        const sortType = data.sort( (a,b) =>{
+            a = a.type.toLowerCase();
+            b = b.type.toLowerCase();
+            if (a > b) {return 1;} 
+            else if (a < b) {return -1;}
+            else if (a === b) { return 0;}
+        });
+        console.log(data)
+        return sortType;
+    }
+    function SortcAmount() {
+        const sortcAmount = data.sort( (a,b) => {return a.amont - b.amont;});
+        console.log(data)
+        return sortcAmount;
+    }
+    //
+    thAmount.addEventListener('click', SortcAmount)
+    thType.addEventListener('click', SortType)
+    thName.addEventListener('click', SortName)
+    inputSave.addEventListener('click', PrintElement);
     reset.addEventListener( 'click', set)
 }());
