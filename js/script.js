@@ -14,11 +14,11 @@
     }
     //
     let object ;
+    const table = document.querySelector('.tablet');
     function PrintElement(){
         const opction = inputType.options[inputType.selectedIndex];
         object = new CreateItens ( inputName.value  , opction.value  ,  inputdate.value  ,  inputAmoutn.value );
         data.push(object);
-        const table = document.querySelector('.tablet');
         const tr = document.createElement('tr');
         for( const item in object){
             const td = document.createElement('td');
@@ -71,32 +71,53 @@
     let thType = document.querySelector('.th_type');
     let thAmount = document.querySelector('.th_amount');
     //
+    let sortData;
     function SortName (){
         alert('hola');
-        const sortName = data.sort( (a,b) =>{
+        sortData = data.sort( (a,b) =>{
             a = a.name.toLowerCase();
             b = b.name.toLowerCase();
             if (a > b) {return 1;} 
             else if (a < b) {return -1;}
             else if (a === b) { return 0;}
         });
-        return sortName;
+        NewTablaWithSort()
+        return sortData;
     }
     function SortType (){
-        const sortType = data.sort( (a,b) =>{
+        sortData = data.sort( (a,b) =>{
             a = a.type.toLowerCase();
             b = b.type.toLowerCase();
             if (a > b) {return 1;} 
             else if (a < b) {return -1;}
             else if (a === b) { return 0;}
         });
-        console.log(data)
-        return sortType;
+        
+        NewTablaWithSort()
+        return sortData;
     }
     function SortcAmount() {
-        const sortcAmount = data.sort( (a,b) => {return a.amont - b.amont;});
-        console.log(data)
-        return sortcAmount;
+        sortData = data.sort( (a,b) => {return a.amont - b.amont;});
+        NewTablaWithSort()
+        return sortData;
+    }
+
+    function NewTablaWithSort(){
+        table.innerHTML='';
+        sortData;
+        console.log(sortData)
+        for(let item of sortData){
+            console.log(item)
+            const tr = document.createElement('tr');
+            for(let i in item){
+                console.log(item[i])
+                const td = document.createElement('td');
+                td.innerText = item[i];
+                tr.append(td);
+                table.appendChild(tr)
+            }
+        }
+    
     }
     //
     thAmount.addEventListener('click', SortcAmount)
