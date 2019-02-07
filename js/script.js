@@ -6,13 +6,12 @@
     const inputdate = document.querySelector('#input_date');
     const inputType = document.querySelector('#input_type');
     const data = [];
-    //
+    // clear input event input
     function set(){
         inputName.value ='';
         inputAmoutn.value='';
         inputdate.value='';
     }
-    //
     let object ;
     const table = document.querySelector('.tablet');
     function PrintElement(){
@@ -29,15 +28,13 @@
         set()
         summation();
     }
-
-    //
+    //construct items to object
     function CreateItens (name , type , date , amont ){
         this.name = name;
         this.type = type;
         this.date = date;
         this.amont = amont;
     }
-    //
     const contentSumarA = document.querySelector('.typeA');
     const sumarTypeA = document.createElement('p');
     const contentSumarB = document.querySelector('.typeB');
@@ -47,7 +44,7 @@
     let num = parseInt(sumarTypeA.innerHTML = 0);
     let numB = parseInt(sumarTypeB.innerHTML = 0);
     let numC = parseInt(sumarTypeC.innerHTML = 0);
-    //
+    //summation 
     function summation(){
         if(object.type == 'A'){
             num += parseInt(object.amont);
@@ -63,19 +60,17 @@
             sumarTypeC.innerHTML = numC
         }
     }
-    //
     contentSumarA.appendChild(sumarTypeA);
     contentSumarB.appendChild(sumarTypeB);
     contentSumarC.appendChild(sumarTypeC);
     let thName = document.querySelector('.th_name');
     let thType = document.querySelector('.th_type');
     let thAmount = document.querySelector('.th_amount');
-    //
+    //new array copy data
     let sortData;
+    //sort type name
     function SortName (){
-        alert('hola');
-        sortData = data.sort( (a,b) =>{
-            a = a.name.toLowerCase();
+        sortData = data.sort( (a,b) =>{a = a.name.toLowerCase();
             b = b.name.toLowerCase();
             if (a > b) {return 1;} 
             else if (a < b) {return -1;}
@@ -84,6 +79,7 @@
         NewTablaWithSort()
         return sortData;
     }
+    //sort type type
     function SortType (){
         sortData = data.sort( (a,b) =>{
             a = a.type.toLowerCase();
@@ -96,33 +92,29 @@
         NewTablaWithSort()
         return sortData;
     }
+    //sort type amount
     function SortcAmount() {
         sortData = data.sort( (a,b) => {return a.amont - b.amont;});
         NewTablaWithSort()
         return sortData;
     }
-
+    // sort new print dom 
     function NewTablaWithSort(){
         table.innerHTML='';
         sortData;
-        console.log(sortData)
         for(let item of sortData){
-            console.log(item)
             const tr = document.createElement('tr');
             for(let i in item){
-                console.log(item[i])
                 const td = document.createElement('td');
                 td.innerText = item[i];
                 tr.append(td);
                 table.appendChild(tr)
             }
         }
-    
     }
-    //
-    thAmount.addEventListener('click', SortcAmount)
-    thType.addEventListener('click', SortType)
-    thName.addEventListener('click', SortName)
+    thAmount.addEventListener('click', SortcAmount);
+    thType.addEventListener('click', SortType);
+    thName.addEventListener('click', SortName);
     inputSave.addEventListener('click', PrintElement);
     reset.addEventListener( 'click', set)
 }());

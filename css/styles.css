@@ -4,6 +4,9 @@ table, td, th {
 table {
   margin-top: 40px; }
 
+tbody {
+  border: 1px solid black; }
+
 th {
   padding: 10px 30px 10px 30px; }
 
