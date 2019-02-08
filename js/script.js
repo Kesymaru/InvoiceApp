@@ -68,36 +68,6 @@
     let thAmount = document.querySelector('.th_amount');
     //new array copy data
     let sortData;
-    //sort type name
-    function SortName (){
-        sortData = data.sort( (a,b) =>{a = a.name.toLowerCase();
-            b = b.name.toLowerCase();
-            if (a > b) {return 1;} 
-            else if (a < b) {return -1;}
-            else if (a === b) { return 0;}
-        });
-        NewTablaWithSort()
-        return sortData;
-    }
-    //sort type type
-    function SortType (){
-        sortData = data.sort( (a,b) =>{
-            a = a.type.toLowerCase();
-            b = b.type.toLowerCase();
-            if (a > b) {return 1;} 
-            else if (a < b) {return -1;}
-            else if (a === b) { return 0;}
-        });
-        
-        NewTablaWithSort()
-        return sortData;
-    }
-    //sort type amount
-    function SortcAmount() {
-        sortData = data.sort( (a,b) => {return a.amont - b.amont;});
-        NewTablaWithSort()
-        return sortData;
-    }
     // sort new print dom 
     function NewTablaWithSort(){
         table.innerHTML='';
@@ -112,9 +82,93 @@
             }
         }
     }
-    thAmount.addEventListener('click', SortcAmount);
-    thType.addEventListener('click', SortType);
-    thName.addEventListener('click', SortName);
+    //sort type name
+    function SortName (){
+        sortData = data.sort( (a,b) =>{a = a.name.toLowerCase();
+            b = b.name.toLowerCase();
+            if (a > b) {return 1;} 
+            else if (a < b) {return -1;}
+            else if (a === b) { return 0;}
+        });
+        NewTablaWithSort()
+        return sortData;
+    }
+    function SortNameBack (){
+        sortData = data.sort( (a,b) =>{a = a.name.toLowerCase();
+            b = b.name.toLowerCase();
+            if (a < b) {return 1;} 
+            else if (a > b) {return -1;}
+            else if (a === b) { return 0;}
+        });
+        NewTablaWithSort()
+        return sortData;
+    }
+    //sort type type
+    function SortType (){
+        sortData = data.sort( (a,b) =>{
+            a = a.type.toLowerCase();
+            b = b.type.toLowerCase();
+            if (a > b) {return 1;} 
+            else if (a < b) {return -1;}
+            else if (a === b) { return 0;}
+        });
+        NewTablaWithSort()
+        return sortData;
+    }
+    function SortTypeBack (){
+        sortData = data.sort( (a,b) =>{
+            a = a.type.toLowerCase();
+            b = b.type.toLowerCase();
+            if (a < b) {return 1;} 
+            else if (a > b) {return -1;}
+            else if (a === b) { return 0;}
+        });
+        NewTablaWithSort()
+        return sortData;
+    }
+    //sort type amount
+    function SortcAmount() {
+        sortData = data.sort( (a,b) => {return a.amont - b.amont;});
+        NewTablaWithSort()
+        return sortData;
+    }
+    function SortcAmountBack() {
+        sortData = data.sort( (a,b) => {return  b.amont - a.amont;});
+        NewTablaWithSort()
+        return sortData;
+    }
+    // order the array
+    let toggl = true;
+    thAmount.addEventListener('click', ()=>{
+        if(toggl === true){
+            SortcAmount();
+            toggl = false;
+        }else if(toggl===false){
+            console.log(toggl);
+            SortcAmountBack()
+            toggl =  true;
+        }
+    });
+    thType.addEventListener('click', ()=>{
+        if(toggl === true){
+            SortType();
+            toggl = false;
+        }else if(toggl===false){
+            console.log(toggl);
+            SortTypeBack();
+            toggl = true;
+        }
+    });
+    thName.addEventListener('click', ()=>{
+        if(toggl === true){
+            SortName();
+            toggl = false;
+        }else if(toggl===false){
+            console.log(toggl);
+            SortNameBack();
+            toggl = true;
+        }
+    });
     inputSave.addEventListener('click', PrintElement);
     reset.addEventListener( 'click', set)
 }());
